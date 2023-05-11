@@ -211,8 +211,6 @@ const jsonData = `
 ]
 `;
 
-// console.log(typeof jsonData);
-
 // convertir cadena a Obj
 
 const productos = JSON.parse(jsonData);
@@ -222,49 +220,30 @@ const productos = JSON.parse(jsonData);
 // contenedor de las cards
 const containerCards = document.querySelector('.cover__container-cards');
 
-// loop para iterar los productos 
-for (let i = 0; i < productos.length; i++) {
-  
+// Generar el Html de cada producto
+
+const htmlProductos = productos.map( producto => `
+      <article class="card">
+        <h2 class="card__title"> ${producto.nombre}</h2>
+        <p class="card__tipo"> Tipo: ${producto.tipo}</p>
+        <p class="card__price"> Precio: ${producto.precio.toFixed(2)}</p>
+        <span class="${producto.disponible ? `card__stock` : `card__stock-red`}">${producto.disponible ? `Disponible` :` No Disponible`}</span>
+       
+
+      </article> 
+  `
+).join("");
+
+// Insertar el HTML generado en el contenedor
+containerCards.innerHTML = htmlProductos;
 
 
-// crear una una Card
+const opciones = document.querySelectorAll("option");
 
-const card = document.createElement('article');
-card.classList.add('card');
-
-// agregar el titulo de la card
-
-const titulo = document.createElement('h2');
-titulo.classList.add('card__title');
-titulo.textContent = productos[i].nombre;
-card.appendChild(titulo);
-
-const tipo = document.createElement('p');
-tipo.classList.add('card__tipo');
-tipo.textContent = `Tipo: ${productos[i].tipo}`;
-card.appendChild(tipo);
-
-const precio = document.createElement('p');
-precio.classList.add('card__price');
-precio.textContent = `Precio: $${productos[i].precio.toFixed(2)}`;
-card.appendChild(precio);
-
-const stock = document.createElement('span');
-stock.classList.add('card__stock');
-if (productos[i].disponible) {
-  stock.textContent = 'Disponible';
-} else {
-  stock.textContent = 'No disponible';
-  stock.classList.add('card__stock-red');
-}
-// operador ternario
-// const stock = document.createElement('span');
-// stock.classList.add('card__stock');
-// stock.textContent = productos[i].disponible ? 'Disponible' : 'No disponible';
-// stock.classList.add(productos[i].disponible ? 'card__stock' : 'card__stock-red');
-// cuerpo.appendChild(stock);
-
-card.appendChild(stock);
-
-containerCards.appendChild(card);
-}
+opciones.forEach( opcion => {
+  opcion.addEventListener('click', ()=>{
+    if(opcion === opcion.value("Verduras")){
+      opcion.classList.add('tipo');
+    }
+  })
+})
