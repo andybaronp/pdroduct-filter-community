@@ -1,4 +1,4 @@
-const jsonData = `
+const jsonData = 
 [
  {
    "id": 1,
@@ -207,43 +207,42 @@ const jsonData = `
    "nombre": "Cebollino",
    "precio": 0.60,
    "disponible": true
- }
+ },
+  
 ]
-`;
+;
 
-// convertir cadena a Obj
-
-const productos = JSON.parse(jsonData);
-// console.log(productos)
-
-
+const opciones = document.querySelector('.tipos') 
 // contenedor de las cards
 const containerCards = document.querySelector('.cover__container-cards');
 
 // Generar el Html de cada producto
-
-const htmlProductos = productos.map( producto => `
-      <article class="card">
-        <h2 class="card__title"> ${producto.nombre}</h2>
-        <p class="card__tipo"> Tipo: ${producto.tipo}</p>
-        <p class="card__price"> Precio: ${producto.precio.toFixed(2)}</p>
-        <span class="${producto.disponible ? `card__stock` : `card__stock-red`}">${producto.disponible ? `Disponible` :` No Disponible`}</span>
-       
-
-      </article> 
-  `
-).join("");
+const templete = (producto) => {
+  return `
+  <article class="card">
+    <h2 class="card__title"> ${producto.nombre}</h2>
+    <p class="card__tipo"> Tipo: ${producto.tipo}</p>
+    <p class="card__price"> Precio: ${producto.precio.toFixed(2)}</p>
+    <span class="${producto.disponible ? `card__stock` : `card__stock-red`}">${producto.disponible ? `Disponible` :` No Disponible`}</span>
+  </article> 
+`
+}
+const htmlProductos = jsonData.map( producto => templete(producto)).join("");
 
 // Insertar el HTML generado en el contenedor
 containerCards.innerHTML = htmlProductos;
 
 
-const opciones = document.querySelectorAll("option");
+opciones.addEventListener('change', () => {
+  if (opciones.value === 'todas') {
+   const allProdcuts = jsonData.map( producto => templete(producto)).join("");
+    containerCards.innerHTML = allProdcuts;
+    return
+  }
+  const productBytype = jsonData.filter(prod => prod.tipo === opciones.value)
+  const productByfilter =  productBytype.map(producto => templete(producto)).join("");
+  containerCards.innerHTML = productByfilter;
 
-opciones.forEach( opcion => {
-  opcion.addEventListener('click', ()=>{
-    if(opcion === opcion.value("Verduras")){
-      opcion.classList.add('tipo');
-    }
-  })
 })
+
+ 
