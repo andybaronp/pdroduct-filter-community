@@ -38,11 +38,20 @@ body{
 .tipo{
     display: none;
 }
+.filtro{
+    display: none;
+}
 .cover__check{
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
+}
+.search__product{
+    outline: none;
+    border: 1px solid rgb(67, 63, 63);
+    border-radius: 4px;
+    padding: 1px;
 }
 .cover__container-cards{
     padding: 10px 40px;
