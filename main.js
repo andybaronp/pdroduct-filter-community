@@ -24,7 +24,7 @@ const jsonData =
  {
    "id": 4,
    "tipo": "fruta",
-   "nombre": "Plátano",
+   "nombre": "Platano",
    "precio": 0.60,
    "disponible": true
  },
@@ -45,7 +45,7 @@ const jsonData =
  {
    "id": 7,
    "tipo": "verdura",
-   "nombre": "Brócoli",
+   "nombre": "Brocoli",
    "precio": 2.50,
    "disponible": true
  },
@@ -120,7 +120,7 @@ const jsonData =
  {
    "id": 18,
    "tipo": "verdura",
-   "nombre": "Pimiento",
+   "nombre": "Pimenton",
    "precio": 1.00,
    "disponible": false
  },
@@ -183,7 +183,7 @@ const jsonData =
  {
    "id": 27,
    "tipo": "verdura",
-   "nombre": "Calabacín",
+   "nombre": "Calabacin",
    "precio": 1.20,
    "disponible": false
  },
@@ -232,17 +232,93 @@ const htmlProductos = jsonData.map( producto => templete(producto)).join("");
 // Insertar el HTML generado en el contenedor
 containerCards.innerHTML = htmlProductos;
 
+let filterTipe = 'todas';
+let disponibles = false;
+let search = '';
 
 opciones.addEventListener('change', () => {
-  if (opciones.value === 'todas') {
-   const allProdcuts = jsonData.map( producto => templete(producto)).join("");
-    containerCards.innerHTML = allProdcuts;
-    return
-  }
-  const productBytype = jsonData.filter(prod => prod.tipo === opciones.value)
-  const productByfilter =  productBytype.map(producto => templete(producto)).join("");
-  containerCards.innerHTML = productByfilter;
-
+  // if (opciones.value === 'todas') {
+  //  const allProdcuts = jsonData.map( producto => templete(producto)).join("");
+  //   containerCards.innerHTML = allProdcuts;
+  //   return
+  // }
+  // const productBytype = jsonData.filter(prod => prod.tipo === opciones.value)
+  // const productByfilter =  productBytype.map(producto => templete(producto)).join("");
+  // containerCards.innerHTML = productByfilter;
+  filterTipe = opciones.value;
+  busqueda();
 })
 
+const check = document.getElementById('check');
+
+check.addEventListener('click', ()=>{
+  // const filterAvailable = jsonData.filter(prod => prod.disponible === true)
+  // const productByfilter =  filterAvailable.map(producto => templete(producto)).join("");
+  // containerCards.innerHTML = productByfilter;
+
+  // check.addEventListener('click', ()=>{
+  //   const allProdcuts = jsonData.map( producto => templete(producto)).join("");
+  //   containerCards.innerHTML = allProdcuts;
+    
+  // })
+
+  // console.log(check.checked);
+  disponibles = check.checked;
+  busqueda();
+})
+
+const searchInput = document.getElementById("buscar");
+const items = document.querySelectorAll(".card");
+
+searchInput.addEventListener("input", function() {
+  // const searchValue = searchInput.value.toLowerCase();
+  // console.log(searchValue);
+
+  // items.forEach(function(item) {
+  //   const text = item.textContent.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  //   if (text.includes(searchValue)) {
+  //     item.style.display = "block";
+  //   } else {
+  //     item.style.display = "none";
+  //   }
+  // });
+  search = searchInput;
+  busqueda();
+});
+
+const busqueda = ()=>{
+  
+  console.log(filterTipe);
+  console.log(disponibles);
+  console.log(search);
+
+  let productoFiltrado = jsonData;
+
+    console.log(jsonData);
+  if(filterTipe !== 'todas'){
+    productoFiltrado = jsonData.filter(prod => prod.tipo === filterTipe)
+    // const productByfilter =  productBytype.map(producto => templete(producto)).join("");
+    
+  }
+
+  if(disponibles){
+    productoFiltrado = productoFiltrado.filter(prod => prod.disponible === true)
+  }
+
  
+
+  if(search !== ''){
+    console.log('buscando en search');
+    productoFiltrado = productoFiltrado.filter(prod => prod.nombre === search)
+
+    // productoFiltrado = jsonData.filter(object => Object.values(object).some(i => i.includes(items)));
+    console.log(productoFiltrado);
+  }
+
+  const productByfilter =  productoFiltrado.map(producto => templete(producto)).join("");
+  containerCards.innerHTML = productByfilter;
+  
+  console.log(productoFiltrado);
+    
+ 
+}
