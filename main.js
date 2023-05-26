@@ -12,10 +12,13 @@ let search = '';
 const templete = (producto) => {
   return `
   <article class="card">
+  <img class="card__img" src="${producto.imagen}" alt="${producto.nombre}">
+  <div class="card__body">
     <h2 class="card__title"> ${producto.nombre}</h2>
     <p class="card__tipo"> Tipo: ${producto.tipo}</p>
     <p class="card__price"> Precio: ${producto.precio.toFixed(2)}</p>
     <span class="${producto.disponible ? `card__stock` : `card__stock-red`}">${producto.disponible ? `Disponible` : ` No Disponible`}</span>
+  </div>
   </article> 
 `
 }
@@ -57,7 +60,13 @@ const busqueda = () => {
 
   const productByfilter = productoFiltrado.map(producto => templete(producto)).join("");
   containerCards.innerHTML = productByfilter;
-
-
-
 }
+
+// menu hamburguesa
+
+const menuHamburguesa = document.getElementById('menu-btn');
+const menuList = document.querySelector('.header__list');
+
+menuHamburguesa.addEventListener('click', ()=>{
+  menuList.classList.toggle('menu-mobile');
+})
