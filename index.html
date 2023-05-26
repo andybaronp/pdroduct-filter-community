@@ -10,38 +10,85 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/eb8ab39ed3.js" crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,600;1,700&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
-  <div class="container">
-    <section class="cards__container">
-
-      <h1 class="cover__title">Supermercado <span>El Trigal</span></h1>
-
+    <header class="header" id="headerSection">
+      <nav class="header__navbar">
+        <a href="#" class="header__title"><i class="fa-solid fa-store"></i>VegFruit</a>
+        <ul class="header__list">
+          <li><a href="#headerSection">Home</a></li>
+          <li><a href="#products__section">Products</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#footer__section">Contact</a></li>
+        </ul>
+        <img src="assets/img/comida-sana.png" id="menu-btn" alt="">
+      </nav>
+    </header>
+    <section class="hero__section">
+      <div class="hero__text">
+        <h4 class="hero__subtitle">PRODUCTOS FRESCOS</h4>
+        <h1 class="hero__title">Lo mejor del campo <br> a tu mesa</h1>
+        <a class="hero__button" href="#products__section">Compra Ahora <i id="arrow" class="fa-solid fa-arrow-right-long"></i></a>
+      </div>
+      <picture class="hero__picture">
+        <img class="hero__img" src="assets/img/Mi proyecto.png" alt="fruit">
+      </picture>
+      <a href="#headerSection"><i id="arrow__up" class="fa-solid fa-circle-chevron-up"></i></a>
+      
+    </section>
+    <section class="cards__container" id="products__section">
+      <h2 class="cover__title">Products</h2>
       <div class="cover__seleccion">
         <label class="select__title" for="">Tipo</label>
-        <select name="select__contain" class="tipos">
-          <option value="todas">Todas</option>
-          <option class="seleccion" value="verdura">Verduras</option>
+        <select name="" class="tipos">
+          <option class="seleccion" value="todas">Todas</option>
+          <option class="seleccion" value="verdura">Verduras </option>
           <option class="seleccion" value="fruta">Frutas</option>
           <option class="seleccion" value="víveres">Viveres</option>
         </select>
         <div class="cover__check">
-          <label for="">Productos disponibles</label>
+          <label class="cover__name" for="">Productos disponibles</label>
           <input type="checkbox" id="check">
         </div>
         <div class="cover__search">
-          <label for="">Producto</label>
-          <input type="search" placeholder="buscar..." class="search__product" id="buscar">
+          <label class="cover__name" for="">Producto</label>
+          <input type="search" class="tipos" placeholder="buscar producto..." id="buscar">
         </div>
       </div>
       <div class="cover__container-cards">
-
       </div>
     </section>
-  </div>
+    <footer class="footer__background" id="footer__section">
+      <div class="footer__container">
+        <div class="footer__logo">
+          <a href="#" class="header__title footer__title-color"><i class="fa-solid fa-store"></i>VegFruit</a>
+          <p class="footer__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur explicabo a natus voluptas, facilis maxime?</p>
+        </div>
+        <ul class="footer__contact">
+          <li><a href="#">Contacto</a></li>
+          <li><a href="#">Como Comprar</a></li>
+          <li><a href="#">Preguntas Frecuentes</a></li>
+          <li><a href="#">Sobre Envios</a></li>
+          <li><a href="#">Politica de Devoluciones</a></li>
+        </ul>
+        <div class="footer__social">
+          <p class="social__title">Redes Sociales</p>
+          <ul class="social__media">
+            <li><a href="#"><i class="fa-brands fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+            <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
+            <li><a href="#"><i class="fa-brands fa-whatsapp"></i></a></li>
+          </ul>
+        </div>
+      </div>  
+    </footer>
 </body>
 
 <script src="main.js" type="module"></script>
-
+  
 </html>
